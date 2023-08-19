@@ -1,0 +1,24 @@
+
+.cell {
+  --size: 5em;
+  width: var(--size);
+  height: var(--size);
+  background-color: red;
+  border: 1px solid black;
+
+  &[data-state="S"] {
+    background-color: hsl(120, 70%, 40%);
+  }
+
+  &[data-state="G"] {
+    background-color: hsl(0, 70%, 50%);
+  }
+
+  &[data-state="."] {
+    background-color: hsl(0, 0%, 90%);
+  }
+
+  &[data-state="#"] {
+    background-color: hsl(0, 0%, 30%);
+  }
+}
