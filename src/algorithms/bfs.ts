@@ -1,5 +1,5 @@
 import { getPossibleMoves, Queue, Coordinate } from './util'
-import { grid, updateGridValue } from '~/stores/grid'
+import { grid, setDisplayGrid, updateDisplayGridValue } from '~/stores/grid'
 
 /**
  * Performs a breadth first search on the global grid state.
@@ -12,11 +12,12 @@ export default async function bfs(start: Coordinate, goal: Coordinate): Promise<
   let q = new Queue<Coordinate>()
   let visited = new Set()
   let predecessors = new Map<string, Coordinate>()
+  setDisplayGrid(grid())
 
   // Add the start node to the queue and mark it as visited
   q.enqueue(start)
   visited.add(JSON.stringify(start))
-  updateGridValue(start.i, start.j, 'x')
+  updateDisplayGridValue(start.i, start.j, 'x')
 
   while (q.length > 0) {
     let curr = q.dequeue()!
@@ -27,9 +28,10 @@ export default async function bfs(start: Coordinate, goal: Coordinate): Promise<
       let trace = backtrack(predecessors, goal)
       for (const coord of trace) {
         await new Promise((resolve) => setTimeout(resolve, 25))
-        updateGridValue(coord.i, coord.j, 'X')
+        updateDisplayGridValue(coord.i, coord.j, 'X')
       }
       return trace
+
     }
     
     // Visit each of the neighbours of the current node (that haven't been visited already)
@@ -39,7 +41,7 @@ export default async function bfs(start: Coordinate, goal: Coordinate): Promise<
         predecessors.set(JSON.stringify(neighbour), curr)
         q.enqueue(neighbour)
         visited.add(JSON.stringify(neighbour))
-        updateGridValue(neighbour.i, neighbour.j, 'x')
+        updateDisplayGridValue(neighbour.i, neighbour.j, 'x')
       }
     }
   }
