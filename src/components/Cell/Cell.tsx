@@ -1,6 +1,6 @@
 import styles from './Cell.module.scss'
 
-export type CellState = 'S' | 'G' | '.' | '#' | 'x'
+export type CellState = 'S' | 'G' | '.' | '#' | 'x' | 'X'
 
 export interface CellProps {
   state: CellState

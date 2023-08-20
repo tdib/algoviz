@@ -3,7 +3,7 @@
   --size: 5em;
   width: var(--size);
   height: var(--size);
-  background-color: red;
+  background-color: blue;
   border: 1px solid black;
 
   &[data-state="S"] {
@@ -19,6 +19,14 @@
   }
 
   &[data-state="#"] {
-    background-color: hsl(0, 0%, 30%);
+    background-color: hsl(0, 0%, 18%);
+  }
+
+  &[data-state="x"] {
+    background-color: hsl(0, 0%, 62%);
+  }
+
+  &[data-state="X"] {
+    background-color: hsl(189, 83%, 50%);
   }
 }
